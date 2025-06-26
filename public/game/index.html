@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Fire Cartoon Mini-Game</title>
+  <style>
+    body { background: #181d27; color: #fff; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+    #game-container { margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
+    h1 { color: #ffb300; margin-top: 24px; }
+    .game-btn { background: #ffb300; color: #232a36; border: none; border-radius: 8px; padding: 10px 24px; font-size: 1.1rem; font-weight: bold; margin: 12px; cursor: pointer; transition: background 0.2s; }
+    .game-btn:hover { background: #ffd54f; }
+    #score { font-size: 1.2rem; margin: 12px; }
+  </style>
+</head>
+<body>
+  <div id="game-container">
+    <h1>Free Fire Cartoon Mini-Game</h1>
+    <canvas id="ff-game" width="400" height="600" style="background:#232a36; border-radius:16px; box-shadow:0 2px 16px #ffb30099;"></canvas>
+    <div id="score">Score: 0</div>
+    <button class="game-btn" onclick="restartGame()">Restart</button>
+    <button class="game-btn" onclick="window.location.href='../index.html'">Back to Marketplace</button>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>
