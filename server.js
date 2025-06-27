@@ -7,10 +7,8 @@ const port = process.env.PORT || 3000;
 // MongoDB connection string (yahan apna MongoDB URI daalein)
 const mongoURI = 'mongodb://localhost:27017/akgaminghub'; // local MongoDB, agar Atlas use kar rahe hain toh URI change karein
 
-mongoose.connect(mongoURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose.connect(process.env.MONGODB_URI);
+
 .then(() => {
   console.log('MongoDB se connection ho gaya!');
 })
@@ -28,6 +26,8 @@ app.get('/', (req, res) => {
   res.send('Server chal raha hai!');
 });
 
-app.listen(port, () => {
-  console.log(`Server http://localhost:${port} pe chal raha hai`);
+const PORT = process.env.PORT || 10000;
+app.listen(PORT, () => {
+  console.log(`✅ Server is running on PORT: ${PORT}`);
 });
+

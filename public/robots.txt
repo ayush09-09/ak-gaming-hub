@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ak-gaming-hub-3.onrender.com/sitemap.xml
