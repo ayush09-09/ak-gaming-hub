@@ -1,29 +1,36 @@
+require('dotenv').config();
 const express = require('express');
-const mongoose = require('mongoose'); // MongoDB ke liye mongoose import kiya
+const mongoose = require('mongoose');
 const path = require('path');
 const app = express();
-const port = process.env.PORT || 3000;
 
-// MongoDB connection string (yahan apna MongoDB URI daalein)
-const mongoURI = 'mongodb://localhost:27017/akgaminghub'; // local MongoDB, agar Atlas use kar rahe hain toh URI change karein
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-mongoose.connect(process.env.MONGODB_URI);
+// Import routes
+const authRoutes = require('./routes/authRoutes');
+const orderRoutes = require('./routes/orderRoutes');
+const adminRoutes = require('./routes/admin');
 
-.then(() => {
-  console.log('MongoDB se connection ho gaya!');
+// MongoDB connection
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 })
-.catch((err) => {
-  console.error('MongoDB connection error:', err);
-});
+  .then(() => console.log('✅ MongoDB connected'))
+  .catch((err) => console.error('MongoDB connection error:', err));
 
-// Middleware (agar zarurat ho toh yahan add karen)
-// app.use(express.json());
-
-// Static files serve karne ke liye
+// Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
+// API routes
+app.use('/api/auth', authRoutes);
+app.use('/api/order', orderRoutes);
+app.use('/api/admin', adminRoutes);
+
 app.get('/', (req, res) => {
-  res.send('Server chal raha hai!');
+  res.send('Server is running!');
 });
 
 const PORT = process.env.PORT || 10000;
