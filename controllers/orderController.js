@@ -8,3 +8,6 @@ exports.getOrders = async (req, res) => {
   // Implement order fetching logic here
   res.status(200).json({ success: true, orders: [] });
 };
+
+// If you need User model, use:
+// const User = require('../models/User');
