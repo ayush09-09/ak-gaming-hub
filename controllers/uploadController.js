@@ -1,28 +1,26 @@
-const UploadedID = require('../models/UploadedID')
+const IDListing = require('../models/IDListing')
 
-exports.uploadID = async (req, res) => {
+const uploadID = async (req, res) => {
   try {
-    const { userId, level, price, images } = req.body
+    const { level, price } = req.body
+    const sellerId = req.user._id // Assuming user is authenticated
+    const images = req.files.map((file) => `/uploads/${file.filename}`)
 
-    if (!userId || !level || !price || !images || images.length !== 5) {
-      return res.status(400).json({ error: 'All fields are required and 5 images must be provided.' })
-    }
-
-    const coins = level >= 60 ? 5 : 0
-
-    const newID = new UploadedID({
-      user: userId,
+    const listing = new IDListing({
       level,
       price,
+      seller: sellerId,
       images,
-      akCoinsRewarded: coins,
+      coinRewarded: false,
     })
 
-    await newID.save()
+    await listing.save()
 
-    res.status(201).json({ message: 'ID uploaded successfully', data: newID })
+    res.status(201).json({ message: 'ID uploaded successfully', listing })
   } catch (error) {
-    console.error('Upload Error:', error)
-    res.status(500).json({ error: 'Server error while uploading ID' })
+    console.error('Upload error:', error)
+    res.status(500).json({ message: 'Upload failed' })
   }
 }
+
+module.exports = { uploadID }
