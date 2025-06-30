@@ -1,8 +1,9 @@
-const { calculateCoinReward } = require("../utils/rewardUtils");
+const mongoose = require('mongoose');
 
-const reward = calculateCoinReward(savedFFID);
-if (reward > 0) {
-  await User.findByIdAndUpdate(savedFFID.sellerId, {
-    $inc: { coinBalance: reward }
-  });
-}
+const FFIDSchema = new mongoose.Schema({
+  sellerId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  level: Number,
+  // ...add other fields as per your app's needs
+});
+
+module.exports = mongoose.model('FFID', FFIDSchema);
