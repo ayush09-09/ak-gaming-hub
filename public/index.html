@@ -1,101 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AK FreeFire ID Marketplace</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header class="main-header">
-      <div class="header-content">
-        <img src="images/ak-logo.png" alt="AK Logo" class="ff-logo">
-        <h1>AK FreeFire ID Marketplace</h1>
-        <nav id="main-nav">
-          <a href="#market">Market</a>
-          <a href="#dashboard">Dashboard</a>
-          <a href="#features">Features</a>
-          <button class="nav-toggle" id="nav-toggle" aria-label="Open Menu">☰</button>
-        </nav>
-      </div>
-      <div class="social-media">
-        <a href="https://www.instagram.com/freefireindia_official/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"/></a>
-        <a href="https://www.facebook.com/freefireIND" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png"/></a>
-        <a href="https://www.youtube.com/c/FreeFireIndiaOfficial" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"/></a>
-        <a href="https://ff.garena.com/en/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png"/></a>
-      </div>
-    </header>
-    <main>
-      <section class="hero-section">
-        <div class="hero-content">
-          <h2>Buy & Sell FreeFire IDs Instantly</h2>
-          <p>Amazon-style secure marketplace for FreeFire players. List your ID, earn AK coins, and buy verified accounts with confidence!</p>
-          <form class="hero-search" onsubmit="return false;">
-            <input type="text" id="hero-search-box" placeholder="Search by Level, ID, or Category...">
-            <button type="submit">Search</button>
-          </form>
-        </div>
-        <div class="hero-image">
-          <img src="https://staticg.sportskeeda.com/editor/2022/01/2e2e2-16418196439341-1920.jpg" alt="FreeFire Hero"/>
-        </div>
-      </section>
-      <section class="search-section">
-        <input type="text" id="search-box" placeholder="Search by Level, ID, or Category...">
-      </section>
-      <section class="seller-form-section">
-        <h2>List Your FreeFire ID</h2>
-        <form id="sellerForm" class="seller-form" enctype="multipart/form-data">
-          <input type="text" name="freeFireID" placeholder="FreeFire ID" required>
-          <input type="number" name="level" placeholder="Level (1-100)" min="1" max="100" required>
-          <input type="text" name="rank" placeholder="Rank" required>
-          <input type="text" name="bundles" placeholder="Bundles (comma separated)">
-          <input type="text" name="evo" placeholder="Evo Guns (comma separated)">
-          <input type="text" name="emotes" placeholder="Emotes (comma separated)">
-          <input type="text" name="other" placeholder="Other Details">
-          <label>Profile Image: <input type="file" name="profileImg" accept="image/*" required></label>
-          <label>Lobby Image: <input type="file" name="lobbyImg" accept="image/*" required></label>
-          <label>Weapon Image: <input type="file" name="weaponImg" accept="image/*" required></label>
-          <label>Vault Image: <input type="file" name="vaultImg" accept="image/*" required></label>
-          <label>Character Image: <input type="file" name="characterImg" accept="image/*" required></label>
-          <button type="submit">List ID</button>
-        </form>
-        <div class="coin-info">
-          <p>Har 60+ level ID list karne par 5 AK Coin milenge (10 coin = 1₹). Coin dashboard mein dikhenge.</p>
-        </div>
-      </section>
-      <section class="marketplace" id="market">
-        <h2>Available FreeFire IDs</h2>
-        <div id="id-list" class="product-list">
-          <!-- Seller IDs will be listed here as product cards by JS -->
-        </div>
-      </section>
-      <section class="dashboard-section" id="dashboard">
-        <h2>Seller Dashboard</h2>
-        <div id="dashboard-content">
-          <!-- Seller coin and ID stats will show here -->
-        </div>
-      </section>
-      <section class="features-section" id="features">
-        <h2>FreeFire Max Features & Bundles</h2>
-        <div id="features-list">
-          <!-- Features, characters, bundles with images will be listed here -->
-        </div>
-      </section>
-      <div id="ai-chat-popup" class="ai-chat-popup">
-        <button id="ai-chat-btn">AK Chat</button>
-        <div class="ai-chat-window" style="display:none;">
-          <div class="ai-chat-header">AK Chat <span id="ai-close">×</span></div>
-          <div class="ai-chat-messages" id="ai-messages"></div>
-          <input type="text" id="ai-input" placeholder="Type your question...">
-          <button id="ai-send">Send</button>
-        </div>
-      </div>
-    </main>
-    <footer>
-      <p>&copy; 2025 AK FreeFire Marketplace</p>
-      <small>All FreeFire assets &copy; Garena. This is a fan-made marketplace.</small>
-    </footer>
-    <script src="script.js"></script>
-    <script src="ai-chat.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AK FreeFire ID Marketplace</title>
+    <link rel="icon" type="image/png" href="/favicon.ico" />
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
 </html>

@@ -12,6 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 const authRoutes = require('./routes/authRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const adminRoutes = require('./routes/admin');
+const uploadRoutes = require('./routes/uploadRoutes');
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI, {
@@ -28,6 +29,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/auth', authRoutes);
 app.use('/api/order', orderRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api', uploadRoutes);
+app.use("/api/ratings", require("./routes/ratingRoutes"));
+app.use("/api/referral", require("./routes/referralRoutes"));
+app.use("/api/id", require("./routes/idRoutes"));
+app.use("/api/stats", require("./routes/statsRoutes"));
+app.use("/api/coins", require("./routes/coinRoutes"));
 
 app.get('/', (req, res) => {
   res.send('Server is running!');

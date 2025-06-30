@@ -2,23 +2,33 @@ const express = require('express');
 const router = express.Router();
 const FreeFireID = require('../models/FreeFireID');
 const sendWhatsAppNotification = require('../utils/whatsapp');
+const { calculateCoinReward } = require('../utils/rewardUtils');
+const User = require('../models/User');
 
 // Sell FreeFireID
 router.post('/sell', async (req, res) => {
   try {
-    const { userID, freeFireID, price } = req.body;
+    const { userID, freeFireID, price, level } = req.body;
     const newID = new FreeFireID({
       userID,
       freeFireID,
       price,
       status: 'available',
       seller: userID,
-      isSold: false
+      isSold: false,
+      level // level field for reward logic
     });
     await newID.save();
+
+    // Coin reward logic
+    const reward = calculateCoinReward(newID);
+    if (reward > 0) {
+      await User.findByIdAndUpdate(userID, { $inc: { coinBalance: reward } });
+    }
+
     // WhatsApp notification to admin
     sendWhatsAppNotification('919297505890', `New FreeFire ID listed for sale: ${freeFireID} by user ${userID}`);
-    res.json({ message: 'FreeFireID listed for sale!', id: newID });
+    res.json({ message: 'FreeFireID listed for sale!', id: newID, reward });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
